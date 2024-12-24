@@ -14,19 +14,23 @@ var _key_right_mouse_pressed = mouse_check_button_pressed(mb_right)
 
 // Calculate movement speed based on potion effect
 var _current_speed = base_move_speed;
-if (active_potion_effect != noone) {
+if (variable_instance_exists(id, "active_potion_effect") && 
+    active_potion_effect != undefined && 
+    is_struct(active_potion_effect) &&
+    variable_struct_exists(active_potion_effect, "speed") && 
+    active_potion_effect.speed != undefined) {
     _current_speed *= (1 + active_potion_effect.speed);
 }
 
 if _key_left
 {
-	xvel -= _current_speed;
-	image_xscale = -abs(image_xscale); // Face left
+    xvel -= _current_speed;
+    image_xscale = -abs(image_xscale); // Face left
 }
 if _key_right
 {
-	xvel += _current_speed;
-	image_xscale = abs(image_xscale); // Face right
+    xvel += _current_speed;
+    image_xscale = abs(image_xscale); // Face right
 }
 
 xvel *= 0.91;
@@ -36,7 +40,9 @@ x += xvel
 y += yvel
 
 // Update potion duration
-if (active_potion_effect != noone) {
+if (variable_instance_exists(id, "active_potion_effect") && 
+    active_potion_effect != undefined && 
+    is_struct(active_potion_effect)) {
     if (active_potion_duration > 0) {
         active_potion_duration--;
         show_debug_message("Potion duration: " + string(active_potion_duration));
@@ -45,7 +51,7 @@ if (active_potion_effect != noone) {
         image_xscale = sign(image_xscale); // Keep facing direction but reset scale
         image_yscale = 1;
         show_debug_message("Potion effects wore off");
-        active_potion_effect = noone;
+        active_potion_effect = undefined;
     }
 }
 

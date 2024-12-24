@@ -1,17 +1,25 @@
-fullhp = 100
-hp = fullhp
+// Health variables
+fullhp = 100;
+hp = fullhp;
 
-size = 1.0
+// Size and movement variables
+size = 1.0;
+walkvelocity = 6.0;
+jumpvelocity = 1.0;
+base_move_speed = 0.5;
 
-walkvelocity = 6.0
-jumpvelocity = 1.0
-
+// Velocity variables
 xvel = 0;
 yvel = 0;
 
-// Movement variables
-base_move_speed = 0.5;  // Base movement speed
+// Initialize held items
+held_mushroom = noone;
+held_potion = noone;
 
-// Potion effect variables
-active_potion_effect = noone;
-active_potion_duration = 0;
+// Initialize potion effect variables
+active_potion_effect = undefined;
+active_potion_duration = undefined;
+
+show_debug_message("Player created - initialized all variables");
+show_debug_message("Initial stats - HP: " + string(hp) + "/" + string(fullhp));
+show_debug_message("Initial movement - Walk: " + string(walkvelocity) + ", Jump: " + string(jumpvelocity));
