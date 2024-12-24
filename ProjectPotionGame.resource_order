@@ -21,6 +21,7 @@
     {"name":"cauldron","order":2,"path":"objects/cauldron/cauldron.yy",},
     {"name":"mushroom","order":3,"path":"objects/mushroom/mushroom.yy",},
     {"name":"player","order":1,"path":"objects/player/player.yy",},
+    {"name":"poop","order":6,"path":"objects/poop/poop.yy",},
     {"name":"potion","order":5,"path":"objects/potion/potion.yy",},
     {"name":"hextodec","order":1,"path":"scripts/hextodec/hextodec.yy",},
     {"name":"ding","order":1,"path":"sounds/ding/ding.yy",},
