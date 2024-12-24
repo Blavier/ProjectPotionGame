@@ -30,5 +30,6 @@
     {"name":"spr_mushroom","order":1,"path":"sprites/spr_mushroom/spr_mushroom.yy",},
     {"name":"spr_player","order":2,"path":"sprites/spr_player/spr_player.yy",},
     {"name":"spr_potion","order":3,"path":"sprites/spr_potion/spr_potion.yy",},
+    {"name":"spr_test_map","order":7,"path":"sprites/spr_test_map/spr_test_map.yy",},
   ],
 }

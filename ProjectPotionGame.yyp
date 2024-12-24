@@ -52,6 +52,7 @@
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
     {"id":{"name":"spr_potion","path":"sprites/spr_potion/spr_potion.yy",},},
     {"id":{"name":"spr_rabbit","path":"sprites/spr_rabbit/spr_rabbit.yy",},},
+    {"id":{"name":"spr_test_map","path":"sprites/spr_test_map/spr_test_map.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
