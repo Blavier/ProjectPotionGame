@@ -14,8 +14,12 @@ if (async_load[? "id"] == request_id) {
         show_debug_message("Created potion instance");
 		
 		//play_sound_world(cool_sound,player.x,player.y,500,1,250,0,0)
+<<<<<<< HEAD
 		audio_play_sound(cool_sound, 0, 0)
         show_debug_message("Played potion creation sound");
+=======
+		audio_play_sound(magic, 0, 0)
+>>>>>>> b96e360bcdcc8fdbf473b92bc30488f8d6ffd420
         
         // Configure the potion with the response data
         with(_potion) {

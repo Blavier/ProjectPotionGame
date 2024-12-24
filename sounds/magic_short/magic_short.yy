@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"magic_short",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.0,
+  "name":"magic_short",
+  "parent":{
+    "name":"Magic",
+    "path":"folders/Sounds/BlavsSFXPack/Magic.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"magic_short.wav",
+  "type":0,
+  "volume":1.0,
+}

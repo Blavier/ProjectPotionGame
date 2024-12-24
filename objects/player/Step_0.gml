@@ -51,6 +51,7 @@ if (active_potion_effect != noone) {
 
 // Pickup/throw logic
 if (_key_pickup) {
+<<<<<<< HEAD
     show_debug_message("E pressed - checking for items to pick up");
     var _held_mushroom = noone;
     var _held_potion = noone;
@@ -119,6 +120,44 @@ if (_key_pickup) {
             show_debug_message("No items within range to pick up");
         }
     }
+=======
+	var _held_mushroom = noone;
+	
+	// Check if we're already holding a mushroom
+	with (mushroom) {
+		if (variable_instance_exists(id, "picked_up") && picked_up) {
+			_held_mushroom = id;
+		}
+	}
+	
+	if (_held_mushroom != noone) {
+		// Throw the held mushroom
+		with (_held_mushroom) {
+			picked_up = false;
+			// Calculate direction to mouse
+			var _dir = point_direction(x, y, mouse_x, mouse_y);
+			// Convert direction to x and y components
+			xvel = lengthdir_x(throw_speed, _dir);
+			yvel = lengthdir_y(throw_speed, _dir);
+			audio_play_sound(impact, 0, 0)
+		}
+	} else {
+		// Try to pick up a nearby mushroom
+		var _nearest = instance_nearest(x, y, mushroom);
+		if (_nearest != noone && distance_to_object(_nearest) < 32) {
+			with (_nearest) {
+				if (!variable_instance_exists(id, "picked_up")) {
+					picked_up = false;
+					throw_speed = 15;
+					xvel = 0;
+					yvel = 0;
+				}
+				picked_up = true;
+				audio_play_sound(impact_high, 0, 0)
+			}
+		}
+	}
+>>>>>>> b96e360bcdcc8fdbf473b92bc30488f8d6ffd420
 }
 
 // Update position of held mushroom

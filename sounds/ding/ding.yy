@@ -12,8 +12,8 @@
   "duration":0.0,
   "name":"ding",
   "parent":{
-    "name":"Sounds",
-    "path":"folders/Sounds.yy",
+    "name":"BlavsSFXPack",
+    "path":"folders/Sounds/BlavsSFXPack.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

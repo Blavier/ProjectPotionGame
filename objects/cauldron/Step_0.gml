@@ -20,8 +20,13 @@ if (_colliding_mushroom != noone) {
             }
             // Destroy the original mushroom
             instance_destroy(_colliding_mushroom);
+<<<<<<< HEAD
         } else {
             show_debug_message("Cauldron is full! Cannot add more ingredients.");
+=======
+			// play sound
+			audio_play_sound(magic__2_, 0, 0)
+>>>>>>> b96e360bcdcc8fdbf473b92bc30488f8d6ffd420
         }
     }
 }
