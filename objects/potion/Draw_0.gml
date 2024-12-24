@@ -1,30 +1,22 @@
-// Draw Event of obj_potion
-draw_self();
-
-// Optional: Color the sprite with the potion color
-image_blend = potion_color;
-
-// Optional: Draw the potion name above the potion
-draw_set_color(potion_color);
-draw_set_halign(fa_center);
-draw_text(x, y - sprite_height - 10, potion_name);
-
-
-// Display all potion effects
-draw_set_color(c_white); // Set text color to the potion color
-var effects_text = "Potion Effects:\n";
-var effect_keys = variable_struct_get_names(potion_effect);
-
-for (var i = 0; i < array_length(effect_keys); i++) {
-    var key = effect_keys[i];
-    var value = potion_effect[$ key]; // Dynamically access struct fields
-    effects_text += string(key) + ": " + string(value) + "\n";
+// Draw the potion
+if (picked_up) {
+    // Draw with drinking animation
+    var _draw_x = x + jiggle_offset;
+    var _draw_y = y;
+    
+    draw_sprite_ext(sprite_index, image_index, _draw_x, _draw_y, 
+        image_xscale, image_yscale, tilt_angle, potion_color, 1);
+        
+    // Draw debug info
+    draw_set_color(c_yellow);
+    draw_text(_draw_x, _draw_y - 20, "HELD");
+} else {
+    // Normal drawing
+    draw_sprite_ext(sprite_index, image_index, x, y, 
+        image_xscale, image_yscale, 0, potion_color, 1);
 }
 
-// Draw the effects text
-var x_offset = 10;
-var y_offset = 10;
-draw_text(x + x_offset, y + y_offset, effects_text);
-
-// Reset the draw color to white
+// Draw debug info
 draw_set_color(c_white);
+draw_text(x, y - 30, "Potion: " + potion_name);
+draw_text(x, y - 40, "Picked up: " + string(picked_up));
