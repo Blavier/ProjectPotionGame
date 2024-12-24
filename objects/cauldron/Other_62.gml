@@ -11,6 +11,7 @@ if (async_load[? "id"] == request_id) {
         var _potion = instance_create_layer(player.x, player.y, "Instances", potion);
 		
 		//play_sound_world(cool_sound,player.x,player.y,500,1,250,0,0)
+		audio_play_sound(cool_sound, 0, 0)
         
         // Configure the potion with the response data
         with(_potion) {
