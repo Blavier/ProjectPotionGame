@@ -2,7 +2,7 @@ if not instance_exists(camera_target) exit;
 
 camera_set_view_size(view, view_width, view_height);
 
-var _spd = 0.15;
+var _spd = 1;
 var _buffer_distance = 50;
 var _max_sink = 0.40;
 

@@ -8,7 +8,7 @@ view_height = 360;
 base_view_width = view_width;
 base_view_height = view_height;
 
-window_scale = 2; //3
+window_scale = 1; //3
 
 window_set_fullscreen(false);
 

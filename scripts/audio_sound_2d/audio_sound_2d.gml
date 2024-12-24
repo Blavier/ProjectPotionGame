@@ -13,9 +13,9 @@ function play_sound_world(_id, _x, _y, _max_dist, _falloff_rate, _full_volume_ra
 	min_pitch = 0.01;
 	pitch_with_distance = -0.1;
 
-	if (!instance_exists(spr_player)) return;
+	if (!instance_exists(player)) return;
 
-    var _dist = point_distance(_x, _y, spr_player.x, spr_player.y);
+    var _dist = point_distance(_x, _y, player.x, player.y);
     var _volume = 1 - _volume_variation;
 
 	if (_dist < _full_volume_radius) {
@@ -28,8 +28,8 @@ function play_sound_world(_id, _x, _y, _max_dist, _falloff_rate, _full_volume_ra
 		return;
 	}
 
-    var _pos_x = (_x - spr_player.x) / panning_divisor / 10; // amount of panning
-    var _pos_y = (_y - spr_player.y) / panning_divisor;
+    var _pos_x = (_x - player.x) / panning_divisor / 10; // amount of panning
+    var _pos_y = (_y - player.y) / panning_divisor;
 	
 	var _rnd_volume	= max(random_volume(_volume, _volume_variation), min_sound_threshold);
 	var _rnd_pitch = max(random_pitch(game.gamespeed, _pitch_variation) + (pitch_with_distance * (_dist / _max_dist)), min_pitch);
@@ -92,11 +92,11 @@ function play_sound_world_doppler(argument0, argument1, argument2, argument3, ar
     var _falloff_rate = argument6;
     var _full_volume_radius = argument7;
 
-    if (!instance_exists(spr_player)) {
+    if (!instance_exists(player)) {
         return; // Exit
     }
 
-    var _dist = point_distance(_x, _y, spr_player.x, spr_player.y);
+    var _dist = point_distance(_x, _y, player.x, player.y);
     var _volume = 1;
 
     if (_dist > _full_volume_radius) {
@@ -104,10 +104,10 @@ function play_sound_world_doppler(argument0, argument1, argument2, argument3, ar
         _volume = calculate_falloff_volume(_adjusted_dist, _max_dist, _falloff_rate, _full_volume_radius);
     }
 
-    var _pos_x = (_x - spr_player.x) / 12; // amount of panning
-    var _pos_y = (_y - spr_player.y);
+    var _pos_x = (_x - player.x) / 12; // amount of panning
+    var _pos_y = (_y - player.y);
 	
-	var _doppler_pitch = calculate_doppler_pitch(_x, _y, _x_previous, _y_previous, spr_player.x, spr_player.y, game.gamespeed);
+	var _doppler_pitch = calculate_doppler_pitch(_x, _y, _x_previous, _y_previous, player.x, player.y, game.gamespeed);
 	
     audio_play_sound_at(_id, -_pos_x, _pos_y, 0, false, 1, 1, 0, 1, _volume, 0, _doppler_pitch);
     if (global.debug_mode) {
@@ -148,8 +148,8 @@ function calculate_doppler_pitch(_x, _y, _x_previous, _y_previous, player_x, pla
     var source_velocity_y = (_y - _y_previous) * gamespeed;
 
     // Calculate velocity of the listener (player)
-    var listener_velocity_x = (player_x - spr_player.xprevious) * gamespeed;
-    var listener_velocity_y = (player_y - spr_player.yprevious) * gamespeed;
+    var listener_velocity_x = (player_x - player.xprevious) * gamespeed;
+    var listener_velocity_y = (player_y - player.yprevious) * gamespeed;
 
     // Calculate the change in frequency using the Doppler effect formula
     var relative_velocity_x = listener_velocity_x - source_velocity_x;
