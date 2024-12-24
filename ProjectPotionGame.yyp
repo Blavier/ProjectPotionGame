@@ -52,6 +52,7 @@
   "resources":[
     {"id":{"name":"camera","path":"objects/camera/camera.yy",},},
     {"id":{"name":"cauldron","path":"objects/cauldron/cauldron.yy",},},
+    {"id":{"name":"game","path":"objects/game/game.yy",},},
     {"id":{"name":"grass_block","path":"objects/grass_block/grass_block.yy",},},
     {"id":{"name":"incantation_box","path":"objects/incantation_box/incantation_box.yy",},},
     {"id":{"name":"mushroom","path":"objects/mushroom/mushroom.yy",},},
