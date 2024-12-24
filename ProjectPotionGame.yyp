@@ -37,7 +37,10 @@
   "resources":[
     {"id":{"name":"camera","path":"objects/camera/camera.yy",},},
     {"id":{"name":"cauldron","path":"objects/cauldron/cauldron.yy",},},
+    {"id":{"name":"grass_block","path":"objects/grass_block/grass_block.yy",},},
+    {"id":{"name":"incantation_box","path":"objects/incantation_box/incantation_box.yy",},},
     {"id":{"name":"mushroom","path":"objects/mushroom/mushroom.yy",},},
+    {"id":{"name":"obj_ingredient_visual","path":"objects/obj_ingredient_visual/obj_ingredient_visual.yy",},},
     {"id":{"name":"player","path":"objects/player/player.yy",},},
     {"id":{"name":"potion","path":"objects/potion/potion.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
@@ -48,6 +51,7 @@
     {"id":{"name":"spr_background","path":"sprites/spr_background/spr_background.yy",},},
     {"id":{"name":"spr_cauldron","path":"sprites/spr_cauldron/spr_cauldron.yy",},},
     {"id":{"name":"spr_default","path":"sprites/spr_default/spr_default.yy",},},
+    {"id":{"name":"spr_grass_block","path":"sprites/spr_grass_block/spr_grass_block.yy",},},
     {"id":{"name":"spr_mushroom","path":"sprites/spr_mushroom/spr_mushroom.yy",},},
     {"id":{"name":"spr_player","path":"sprites/spr_player/spr_player.yy",},},
     {"id":{"name":"spr_potion","path":"sprites/spr_potion/spr_potion.yy",},},

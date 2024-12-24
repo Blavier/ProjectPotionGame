@@ -41,10 +41,11 @@ if (_key_pickup) {
 		// Throw the held mushroom
 		with (_held_mushroom) {
 			picked_up = false;
-			// Throw in the direction the player is facing
-			var _throw_dir = sign(other.image_xscale);
-			xvel = _throw_dir * throw_speed;
-			yvel = -2; // Small upward arc
+			// Calculate direction to mouse
+			var _dir = point_direction(x, y, mouse_x, mouse_y);
+			// Convert direction to x and y components
+			xvel = lengthdir_x(throw_speed, _dir);
+			yvel = lengthdir_y(throw_speed, _dir);
 		}
 	} else {
 		// Try to pick up a nearby mushroom

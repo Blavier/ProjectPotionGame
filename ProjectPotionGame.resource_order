@@ -19,7 +19,10 @@
   ],
   "ResourceOrderSettings":[
     {"name":"cauldron","order":2,"path":"objects/cauldron/cauldron.yy",},
+    {"name":"grass_block","order":6,"path":"objects/grass_block/grass_block.yy",},
+    {"name":"incantation_box","order":8,"path":"objects/incantation_box/incantation_box.yy",},
     {"name":"mushroom","order":3,"path":"objects/mushroom/mushroom.yy",},
+    {"name":"obj_ingredient_visual","order":7,"path":"objects/obj_ingredient_visual/obj_ingredient_visual.yy",},
     {"name":"player","order":1,"path":"objects/player/player.yy",},
     {"name":"potion","order":5,"path":"objects/potion/potion.yy",},
     {"name":"hextodec","order":1,"path":"scripts/hextodec/hextodec.yy",},
@@ -27,6 +30,7 @@
     {"name":"spr_background","order":6,"path":"sprites/spr_background/spr_background.yy",},
     {"name":"spr_cauldron","order":5,"path":"sprites/spr_cauldron/spr_cauldron.yy",},
     {"name":"spr_default","order":4,"path":"sprites/spr_default/spr_default.yy",},
+    {"name":"spr_grass_block","order":8,"path":"sprites/spr_grass_block/spr_grass_block.yy",},
     {"name":"spr_mushroom","order":1,"path":"sprites/spr_mushroom/spr_mushroom.yy",},
     {"name":"spr_player","order":2,"path":"sprites/spr_player/spr_player.yy",},
     {"name":"spr_potion","order":3,"path":"sprites/spr_potion/spr_potion.yy",},
