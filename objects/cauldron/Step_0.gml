@@ -1,24 +1,3 @@
-if (keyboard_check_pressed(vk_space)) {
-    // Create the request body
-    var _body = {
-        ingredients: ingredients,
-        incantation: incantation
-    };
-
-    // Convert the body to JSON string
-    var _json_body = json_stringify(_body);
-
-    // Create header map
-    var _headers = ds_map_create();
-    ds_map_add(_headers, "Content-Type", "application/json");
-
-    // Send the request
-    request_id = http_request("http://localhost:5000/chat", "POST", _headers, _json_body);
-
-    // Clean up the header map as it's no longer needed
-    ds_map_destroy(_headers);
-}
-
 // Check for collision with mushrooms
 var _colliding_mushroom = instance_place(x, y, mushroom);
 if (_colliding_mushroom != noone) {
@@ -26,7 +5,11 @@ if (_colliding_mushroom != noone) {
     if (!_colliding_mushroom.picked_up) {
         // Add to ingredients if not already present
         if (array_length(ingredients) < 5) { // Limit to 5 ingredients
-            array_push(ingredients, _colliding_mushroom);
+            // Store the object name instead of the instance
+            var _ingredient_name = object_get_name(_colliding_mushroom.object_index);
+            array_push(ingredients, _ingredient_name);
+            show_debug_message("Added mushroom to cauldron. Total ingredients: " + string(array_length(ingredients)));
+            
             // Create a visual indicator
             with (instance_create_layer(x, y, "Instances", obj_ingredient_visual)) {
                 parent_cauldron = other.id;
@@ -37,8 +20,26 @@ if (_colliding_mushroom != noone) {
             }
             // Destroy the original mushroom
             instance_destroy(_colliding_mushroom);
+        } else {
+            show_debug_message("Cauldron is full! Cannot add more ingredients.");
         }
     }
+}
+
+// Check for incantation input when ingredients are present and player is touching cauldron
+var _player_touching = instance_place(x, y, player);
+if (array_length(ingredients) > 0 && keyboard_check_pressed(ord("E")) && _player_touching != noone) {
+    // Only create if one doesn't already exist
+    if (!instance_exists(incantation_box)) {
+        show_debug_message("Opening incantation box. Current incantation: " + string(incantation));
+        var _box = instance_create_layer(x, y, "Instances", incantation_box);
+        _box.parent_cauldron = id;
+        keyboard_string = ""; // Clear keyboard buffer
+    }
+} else if (keyboard_check_pressed(ord("E")) && !_player_touching) {
+    show_debug_message("Player must be touching cauldron to enter incantation");
+} else if (keyboard_check_pressed(ord("E")) && array_length(ingredients) == 0) {
+    show_debug_message("Need ingredients in cauldron to enter incantation");
 }
 
 // Update rotation angle for visual indicators

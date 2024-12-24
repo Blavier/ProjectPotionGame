@@ -1,7 +1,10 @@
-var _key_left = keyboard_check(ord("A"));
-var _key_right = keyboard_check(ord("D"));
-var _key_up = keyboard_check(ord("W"));
-var _key_down = keyboard_check(ord("S"));
+// Check if incantation box is active
+var _can_move = !instance_exists(incantation_box) || !incantation_box.active;
+
+var _key_left = _can_move ? keyboard_check(ord("A")) : false;
+var _key_right = _can_move ? keyboard_check(ord("D")) : false;
+var _key_up = _can_move ? keyboard_check(ord("W")) : false;
+var _key_down = _can_move ? keyboard_check(ord("S")) : false;
 var _key_action = keyboard_check(vk_space);
 var _key_pickup = keyboard_check_pressed(ord("E"));
 var _key_left_mouse = mouse_check_button(mb_left)
