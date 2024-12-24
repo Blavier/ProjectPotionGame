@@ -270,6 +270,8 @@
     {"id":{"name":"spr_potion","path":"sprites/spr_potion/spr_potion.yy",},},
     {"id":{"name":"spr_rabbit","path":"sprites/spr_rabbit/spr_rabbit.yy",},},
     {"id":{"name":"spr_test_map","path":"sprites/spr_test_map/spr_test_map.yy",},},
+    {"id":{"name":"spr_tiles_alchemist","path":"sprites/spr_tiles_alchemist/spr_tiles_alchemist.yy",},},
+    {"id":{"name":"tiles_alchemist","path":"tilesets/tiles_alchemist/tiles_alchemist.yy",},},
   ],
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
