@@ -1,0 +1,1 @@
+if (keyboard_check_released(vk_escape) && !keyboard_check(vk_lcontrol)) game_end();

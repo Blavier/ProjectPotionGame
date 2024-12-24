@@ -12,6 +12,17 @@ base_move_speed = 0.5;
 xvel = 0;
 yvel = 0;
 
+
+// Platforming
+footstepcreated = false;
+fallingstate = 0;
+jumpingstate = 0;
+timesincejumped = 0;
+// assist
+coyote_time = 0;
+jump_input_linger = 0;
+
+
 // Initialize held items
 held_mushroom = noone;
 held_potion = noone;
