@@ -22,7 +22,8 @@ if (picked_up) {
                 show_debug_message("Drinking progress: " + string(drink_progress));
                 
                 // Calculate tilt and jiggle
-                tilt_angle = -45 * drink_progress; // Tilt up to 45 degrees back
+                // Tilt towards the player (negative angle if player is facing right, positive if facing left)
+                tilt_angle = -45 * drink_progress * sign(_player.image_xscale); 
                 jiggle_offset = sin(drink_progress * 20) * (1 - drink_progress) * 3; // Jiggle less as we progress
                 base_y_offset = -4 * drink_progress; // Move slightly up while drinking
                 
@@ -36,11 +37,21 @@ if (picked_up) {
                         active_potion_effect = other.potion_effect;
                         active_potion_duration = other.potion_effect.duration;
                         
-                        // Apply immediate effects
-                        image_xscale *= other.potion_effect.size;
-                        image_yscale *= other.potion_effect.size;
-                        x += other.potion_effect.position[0];
-                        y += other.potion_effect.position[1];
+                        // Apply immediate effects - check for null values
+                        if (other.potion_effect.size != undefined) {
+                            image_xscale *= other.potion_effect.size;
+                            image_yscale *= other.potion_effect.size;
+                        }
+                        
+                        // Check if position exists and is an array before accessing indices
+                        if (other.potion_effect.position != undefined && is_array(other.potion_effect.position)) {
+                            if (array_length(other.potion_effect.position) > 0 && other.potion_effect.position[0] != undefined) {
+                                x += other.potion_effect.position[0];
+                            }
+                            if (array_length(other.potion_effect.position) > 1 && other.potion_effect.position[1] != undefined) {
+                                y += other.potion_effect.position[1];
+                            }
+                        }
                         
                         show_debug_message("Applied potion effects - Size: " + string(image_xscale) + 
                             ", Speed: " + string(other.potion_effect.speed) + 
