@@ -1,5 +1,5 @@
-// In the Step Event of obj_cauldron
-if (keyboard_check_pressed(vk_space)) { // Or whatever trigger you want to use
+
+if (keyboard_check_pressed(vk_space)) {
     // Create the request body
     var _body = {
         ingredients: ingredients,
@@ -19,10 +19,3 @@ if (keyboard_check_pressed(vk_space)) { // Or whatever trigger you want to use
     // Clean up the header map as it's no longer needed
     ds_map_destroy(_headers);
 }
-
-// decode json
-/*
-var _potion = instance_create_depth(x, y, 0, potion)
-	_potion.effect_size = 123
-	_potion.effect_position = 654
-	_potion.effect_health = 4562
