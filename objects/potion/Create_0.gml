@@ -20,4 +20,7 @@ tilt_angle = 0;      // Current tilt of the potion
 jiggle_offset = 0;   // Side-to-side jiggle
 base_y_offset = 0;   // Base vertical offset when held
 
+// Set depth to draw above player
+depth = -1000;  // Higher negative numbers are drawn on top
+
 show_debug_message("Created potion with name: " + potion_name);
