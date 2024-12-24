@@ -37,6 +37,8 @@ if (_colliding_mushroom != noone) {
             }
             // Destroy the original mushroom
             instance_destroy(_colliding_mushroom);
+			// play sound
+			audio_play_sound(magic__2_, 0, 0)
         }
     }
 }

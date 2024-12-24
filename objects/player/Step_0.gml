@@ -46,6 +46,7 @@ if (_key_pickup) {
 			// Convert direction to x and y components
 			xvel = lengthdir_x(throw_speed, _dir);
 			yvel = lengthdir_y(throw_speed, _dir);
+			audio_play_sound(impact, 0, 0)
 		}
 	} else {
 		// Try to pick up a nearby mushroom
@@ -59,6 +60,7 @@ if (_key_pickup) {
 					yvel = 0;
 				}
 				picked_up = true;
+				audio_play_sound(impact_high, 0, 0)
 			}
 		}
 	}

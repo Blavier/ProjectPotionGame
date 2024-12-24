@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"hit_8bit",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":128,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.0,
+  "name":"hit_8bit",
+  "parent":{
+    "name":"Hurt & Death",
+    "path":"folders/Sounds/BlavsSFXPack/Hurt & Death.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"hit_8bit.wav",
+  "type":0,
+  "volume":1.0,
+}
