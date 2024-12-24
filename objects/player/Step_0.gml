@@ -4,6 +4,7 @@ var _can_move = !instance_exists(incantation_box) || !incantation_box.active;
 var _key_left = _can_move ? keyboard_check(ord("A")) : false;
 var _key_right = _can_move ? keyboard_check(ord("D")) : false;
 var _key_up = _can_move ? keyboard_check(ord("W")) : false;
+var _key_up_pressed = _can_move ? keyboard_check_pressed(ord("W")) : false;
 var _key_down = _can_move ? keyboard_check(ord("S")) : false;
 var _key_action = keyboard_check(vk_space);
 var _key_pickup = keyboard_check_pressed(ord("E"));
@@ -11,6 +12,69 @@ var _key_left_mouse = mouse_check_button(mb_left)
 var _key_left_mouse_pressed = mouse_check_button_pressed(mb_left)
 var _key_right_mouse = mouse_check_button(mb_right)
 var _key_right_mouse_pressed = mouse_check_button_pressed(mb_right)
+
+var _onground = false
+var _grid_collidable = game.grid_collidable
+
+if (grid_place_meeting_pos(x, y + 1, _grid_collidable))
+{
+	_onground = true
+	coyote_time = 6
+}
+else if (coyote_time > 0) coyote_time --;
+
+if (_key_up_pressed) jump_input_linger = 6
+
+if (_key_up && jumpingstate && yvel < 0.5 && timesincejumped < 24)
+{
+	yvel += -0.138 // jump
+}
+
+if (jump_input_linger) jump_input_linger --
+
+if !jumpingstate
+{
+	if (jump_input_linger > 0)
+	{
+		if (coyote_time > 0) // on ground or was recently
+		{
+			yvel = _onground ? -5.3 : -4; // jump
+			
+			timesincejumped = 0;
+			
+			audio_play_sound(jump, 1, 0, 1+random(0.1), 0, 0.9 + random(0.2));
+								
+			jump_input_linger = 0;
+			coyote_time = 0;
+			fallingstate = 0;
+			jumpingstate = 1;
+		}
+	}
+}
+
+timesincejumped ++;
+
+if (jumpingstate || fallingstate)
+{
+	if (yvel > -1)
+	{
+		if (_onground)
+		{
+			jumpingstate = 0;
+			fallingstate = 0;
+		
+			audio_play_sound(land, 1, 0, 1+random(0.1), 0, 0.9 + random(0.2));
+		}
+	}
+}
+
+if (yvel > 0)
+{
+	if (!_onground)
+	{
+		fallingstate = 1;	
+	}
+}
 
 // Calculate movement speed based on potion effect
 var _current_speed = base_move_speed;
@@ -22,22 +86,81 @@ if (variable_instance_exists(id, "active_potion_effect") &&
     _current_speed *= (1 + active_potion_effect.speed);
 }
 
-if _key_left
+
+
+yvel += 0.25; // gravity
+
+if (grid_place_meeting_pos(x, y + 1, _grid_collidable))
 {
-    xvel -= _current_speed;
-    image_xscale = -abs(image_xscale); // Face left
+	_onground = true;
 }
-if _key_right
+	
+var _hor = (_key_right - _key_left);
+var _vertical = (_key_down - _key_up);
+
+if (-1 > 0) { // for locking movement change this
+	_hor = 0;
+	_vertical = 0;
+}
+else
 {
-    xvel += _current_speed;
-    image_xscale = abs(image_xscale); // Face right
+	var _inair_mod = 1.0;
+		
+	if (!_onground) _inair_mod = 0.25;
+
+	var _speed_diagonal = _current_speed * 0.707;
+	if (_hor != 0 && _vertical != 0) {
+	    xvel += _hor * _speed_diagonal * _inair_mod;
+	} else {
+	    xvel += _hor * _current_speed * _inair_mod;
+	}
 }
 
-xvel *= 0.91;
-yvel *= 0.91;
+// friction
+if (_onground)
+{
+	xvel *= (1.00 - 0.04 - 0.01);
+	yvel *= (1.00 - 0.04 - 0.01);
+}
+else
+{
+	xvel *= (1.00 - 0.01);
+	yvel *= (1.00 - 0.01);
+}
+		
 
-x += xvel
-y += yvel
+// move obj
+var _nx = x + xvel// * game.gamespeed;
+var _ny = y + yvel// * game.gamespeed;
+
+// collision
+if (xvel != 0) {
+	if (!grid_place_meeting_pos(_nx, y, _grid_collidable)) {
+		x = _nx;
+	} else {
+		while (!grid_place_meeting_pos(sign(xvel) + x, y, _grid_collidable)) {
+			x += sign(xvel);
+		}
+		xvel = 0;
+	}
+}
+	
+if (yvel != 0) {
+	if (!grid_place_meeting_pos(x, _ny, _grid_collidable)) {
+		y = _ny;
+	} else {
+		while (!grid_place_meeting_pos(x, sign(yvel) + y, _grid_collidable)) {
+			y += sign(yvel);
+		}
+		yvel = 0;
+	}
+}
+	
+// clamp position to room
+x = clamp(x, 0, room_width);
+y = clamp(y, 0, room_height);
+
+
 
 // Update potion duration
 if (variable_instance_exists(id, "active_potion_effect") && 

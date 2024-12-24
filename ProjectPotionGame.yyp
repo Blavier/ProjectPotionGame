@@ -67,6 +67,7 @@
     {"id":{"name":"potion","path":"objects/potion/potion.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
     {"id":{"name":"audio_sound_2d","path":"scripts/audio_sound_2d/audio_sound_2d.yy",},},
+    {"id":{"name":"grid_col","path":"scripts/grid_col/grid_col.yy",},},
     {"id":{"name":"hextodec","path":"scripts/hextodec/hextodec.yy",},},
     {"id":{"name":"bounce__2_","path":"sounds/bounce__2_/bounce__2_.yy",},},
     {"id":{"name":"bounce__3_","path":"sounds/bounce__3_/bounce__3_.yy",},},
