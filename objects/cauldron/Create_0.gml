@@ -1,6 +1,6 @@
 // In the Create Event of obj_cauldron
 ingredients = []; // Array to store ingredients
-incantation = ""; // String to store the incantation
+incantation = "make me fly"; // String to store the incantation
 request_id = -1;
 
 // Variables for visual ingredient indicators

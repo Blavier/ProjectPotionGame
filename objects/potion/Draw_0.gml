@@ -28,25 +28,3 @@ draw_text(x + x_offset, y + y_offset, effects_text);
 
 // Reset the draw color to white
 draw_set_color(c_white);
-
-// Save the original color and angle
-var _original_color = draw_get_color();
-draw_set_color(potion_color);
-
-// Draw the potion with animation if being drunk
-if (drinking) {
-    // Apply tilt and jiggle to position
-    var _draw_x = x + jiggle_offset;
-    var _draw_y = y;
-    
-    // Draw the potion tilted
-    draw_sprite_ext(sprite_index, image_index, _draw_x, _draw_y, 
-        image_xscale, image_yscale, tilt_angle, potion_color, image_alpha);
-} else {
-    // Normal drawing
-    draw_sprite_ext(sprite_index, image_index, x, y, 
-        image_xscale, image_yscale, 0, potion_color, image_alpha);
-}
-
-// Reset color
-draw_set_color(_original_color);

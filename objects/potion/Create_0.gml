@@ -10,12 +10,3 @@ potion_effect = {
     speed: 0,
     duration: 0
 };
-
-// Pickup and drinking variables
-picked_up = false;
-drinking = false;
-drink_progress = 0;
-drink_speed = 0.02;  // How fast to animate the drinking
-tilt_angle = 0;      // Current tilt of the potion
-jiggle_offset = 0;   // Side-to-side jiggle
-base_y_offset = 0;   // Base vertical offset when held
