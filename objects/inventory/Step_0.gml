@@ -6,12 +6,13 @@ for (var i = 0; i < 3; i++) {
         show_debug_message("Slot " + string(i + 1) + " key pressed");
         
         // If player is holding an item, try to store it
-        if (instance_exists(player_ref) && player_ref.held_item != noone) {
+        if (instance_exists(player_ref) && player_ref.held_item != noone && instance_exists(player_ref.held_item)) {
             if (slots[i].is_empty) {
                 show_debug_message("Storing item in slot " + string(i + 1));
                 // Store item info and destroy the instance
-                slots[i] = store_item(player_ref.held_item);
-                instance_destroy(player_ref.held_item);
+                var _item_to_store = player_ref.held_item;
+                slots[i] = store_item(_item_to_store);
+                instance_destroy(_item_to_store);
                 player_ref.held_item = noone;
             }
         }
@@ -20,29 +21,34 @@ for (var i = 0; i < 3; i++) {
             show_debug_message("Creating item from slot " + string(i + 1));
             // Create new instance from stored item
             var _new_item = instance_create_layer(player_ref.x, player_ref.y, "Instances", asset_get_index(slots[i].type));
-            with (_new_item) {
-                sprite_index = other.slots[i].sprite;
-                
-                // Set properties based on item type
-                if (object_index == item) {
-                    item_power = other.slots[i].data.item_power;
-                    rarity = other.slots[i].data.rarity;
+            if (instance_exists(_new_item)) {
+                with (_new_item) {
+                    sprite_index = other.slots[i].sprite;
+                    
+                    // Set properties based on item type
+                    if (object_index == item) {
+                        item_power = other.slots[i].data.item_power;
+                        rarity = other.slots[i].data.rarity;
+                    }
+                    else if (object_index == potion) {
+                        potion_effect = other.slots[i].data.potion_effect;
+                        potion_power = other.slots[i].data.potion_power;
+                    }
+                    
+                    picked_up = true;
                 }
-                else if (object_index == potion) {
-                    potion_effect = other.slots[i].data.potion_effect;
-                    potion_power = other.slots[i].data.potion_power;
-                }
-                
-                picked_up = true;
+                player_ref.held_item = _new_item;
+                slots[i] = create_empty_slot();
+                show_debug_message("Item retrieved from slot " + string(i + 1));
+            } else {
+                show_debug_message("Failed to create item from slot " + string(i + 1));
             }
-            player_ref.held_item = _new_item;
-            slots[i] = create_empty_slot();
-            show_debug_message("Item retrieved from slot " + string(i + 1));
         } else {
             show_debug_message("Cannot interact with slot " + string(i + 1) + 
                              ". Slot empty: " + string(slots[i].is_empty) + 
                              ", Player exists: " + string(instance_exists(player_ref)) + 
-                             ", Player holding item: " + string(player_ref != noone && player_ref.held_item != noone));
+                             ", Player holding item: " + string(player_ref != noone && player_ref.held_item != noone) +
+                             ", Item exists: " + string(player_ref != noone && player_ref.held_item != noone && instance_exists(player_ref.held_item)));
         }
     }
 }
