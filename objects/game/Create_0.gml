@@ -1,7 +1,7 @@
 randomize(); // random seed
 
 gametime = 0;
-
+world_gravity = 0.25;
 
 // Tile System
 #macro CELL_WIDTH 16

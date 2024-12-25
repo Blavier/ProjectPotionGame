@@ -125,7 +125,7 @@ if (variable_instance_exists(id, "active_potion_effect") &&
 
 
 
-yvel += 0.25; // gravity
+yvel += game.world_gravity; // gravity
 
 if (grid_place_meeting_pos(x, y + 1, _grid_collidable))
 {
@@ -143,7 +143,7 @@ else
 {
 	var _inair_mod = 1.0;
 		
-	if (!_onground) _inair_mod = 0.25;
+	if (!_onground) _inair_mod = 0.45;
 
 	var _speed_diagonal = _current_speed * 0.707;
 	if (_hor != 0 && _vertical != 0) {
@@ -154,7 +154,7 @@ else
 }
 
 // friction
-var _airdrag = 0.025;
+var _airdrag = 0.035;
 if (_onground)
 {
 	var _friction = 0.08;
@@ -272,7 +272,6 @@ if (_key_pickup) {
             with (_nearest_mushroom) {
                 if (!variable_instance_exists(id, "picked_up")) {
                     picked_up = false;
-                    throw_speed = 15;
                     xvel = 0;
                     yvel = 0;
                 }
@@ -294,8 +293,8 @@ if (_key_pickup) {
 // Update position of held mushroom
 with (item) {
     if (variable_instance_exists(id, "picked_up") && picked_up) {
-        x = other.x + (other.image_xscale * 16); // Offset to the side the player is facing
-        y = other.y + 8; // Hold at waist level instead of above head
+        x = other.x + (other.image_xscale * 4); // Offset to the side the player is facing
+        y = other.y - 4; // Hold at waist level instead of above head
     }
 }
 

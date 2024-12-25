@@ -23,8 +23,8 @@ if (_colliding_item != noone) {
             with (instance_create_layer(x, y, "Instances", obj_ingredient_visual)) {
                 parent_cauldron = other.id;
                 sprite_index = _colliding_item.sprite_index;
-                image_xscale = 0.5; // Make it smaller
-                image_yscale = 0.5;
+                image_xscale = 0.75; // Make it smaller
+                image_yscale = 0.75;
                 angle_offset = other.angle + (360 / (array_length(other.ingredients))); // Spread evenly
             }
             // Destroy the original item

@@ -1,9 +1,7 @@
-// Basic physics variables
 picked_up = false;
-throw_speed = 15;
+throw_speed = 6;
 xvel = 0;
 yvel = 0;
-grav = 0;
 
 // Common items list (mushroom only)
 var common_sprites = [spr_mushroom];
