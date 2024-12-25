@@ -143,7 +143,7 @@ else
 {
 	var _inair_mod = 1.0;
 		
-	if (!_onground) _inair_mod = 0.45;
+	if (!_onground) _inair_mod = 0.2;
 
 	var _speed_diagonal = _current_speed * 0.707;
 	if (_hor != 0 && _vertical != 0) {
@@ -154,10 +154,10 @@ else
 }
 
 // friction
-var _airdrag = 0.035;
+var _airdrag = 0.03;
 if (_onground)
 {
-	var _friction = 0.08;
+	var _friction = 0.18;
 	xvel *= (1.00 - _friction - _airdrag);
 	yvel *= (1.00 - _friction - _airdrag);
 }

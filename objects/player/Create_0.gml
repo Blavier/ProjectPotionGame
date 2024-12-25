@@ -4,8 +4,8 @@ hp = fullhp;
 
 // Size and movement variables
 size = 1.0;
-jumpvelocity = 1.0;
-base_move_speed = 0.25;
+jumpvelocity = 0.9;
+base_move_speed = 0.5;
 
 // Velocity variables
 xvel = 0;
