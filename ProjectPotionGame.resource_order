@@ -46,6 +46,7 @@
     {"name":"Object9","order":9,"path":"objects/Object9/Object9.yy",},
     {"name":"player","order":1,"path":"objects/player/player.yy",},
     {"name":"potion","order":5,"path":"objects/potion/potion.yy",},
+    {"name":"animations","order":3,"path":"scripts/animations/animations.yy",},
     {"name":"grid_col","order":2,"path":"scripts/grid_col/grid_col.yy",},
     {"name":"hextodec","order":1,"path":"scripts/hextodec/hextodec.yy",},
     {"name":"bounce__3_","order":1,"path":"sounds/bounce__3_/bounce__3_.yy",},

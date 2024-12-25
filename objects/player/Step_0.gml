@@ -76,6 +76,43 @@ if (yvel > 0)
 	}
 }
 
+var _facing_right = 0;
+var _facing_left = 0;
+var _facing_up = 0;
+var _facing_down = 0;
+
+if (keyboard_check(vk_right))
+{
+	_facing_right = 1
+	_facing_left = 0
+}
+else if (keyboard_check(vk_left))
+{
+	_facing_right = 0
+	_facing_left = 1
+}
+
+if (_facing_right)
+{
+	image_xscale = 1;	
+}
+else if (_facing_left)
+{
+	image_xscale = -1;	
+}
+else if (_onground)
+{
+	// walking turning
+	if (_key_left)
+	{
+		image_xscale = -1;	
+	}
+	else if (_key_right) {
+		image_xscale = 1;	
+	}
+}
+
+
 // Calculate movement speed based on potion effect
 var _current_speed = base_move_speed;
 if (variable_instance_exists(id, "active_potion_effect") && 
@@ -117,15 +154,17 @@ else
 }
 
 // friction
+var _airdrag = 0.025;
 if (_onground)
 {
-	xvel *= (1.00 - 0.04 - 0.01);
-	yvel *= (1.00 - 0.04 - 0.01);
+	var _friction = 0.08;
+	xvel *= (1.00 - _friction - _airdrag);
+	yvel *= (1.00 - _friction - _airdrag);
 }
 else
 {
-	xvel *= (1.00 - 0.01);
-	yvel *= (1.00 - 0.01);
+	xvel *= (1.00 - _airdrag);
+	yvel *= (1.00 - _airdrag);
 }
 		
 
@@ -259,3 +298,109 @@ with (mushroom) {
         y = other.y + 8; // Hold at waist level instead of above head
     }
 }
+
+
+
+//// SPRITE
+
+var _start_frame = 0;
+var _anim_length = 0;
+var _anim_speed = 0;
+
+switch (anim)
+{
+	case anim_idle:
+		_start_frame	= 0;
+		_anim_length	= 1;
+		_anim_speed		= 0;
+	break;
+		
+	case anim_run:
+		_start_frame	= 0;
+		_anim_length	= 4;
+		_anim_speed		= 8;
+	break;
+	
+	case anim_jump:
+		_start_frame	= 5;
+		_anim_length	= 1;
+		_anim_speed		= 0;
+	break;
+	
+	case anim_fall:
+		_start_frame	= 7;
+		_anim_length	= 1;
+		_anim_speed		= 0;
+	break;
+}
+
+anim_current_frame = floor(anim_tick / _anim_speed);
+
+if (anim == anim_run)
+{
+	var _current_frame = image_index;
+	if ((anim_current_frame == 3 || anim_current_frame == 1) && !footstepcreated && _onground)
+	{
+		footstepcreated = true;
+		
+		audio_play_sound(choose(step_dirt, step_dirt2, step_dirt3),
+								1, 0, 0.2+random(0.1), 0, 0.9 + (anim_current_frame-1)/10 + random(0.1));
+		{
+			// particle
+		}
+	}
+	
+	if (anim_current_frame == 2 || anim_current_frame == 0)
+	{
+		footstepcreated = false;
+	}
+}
+
+if (jumpingstate) 
+{
+	anim = anim_jump;
+			
+	if (yvel > 1) {
+		anim_frame = 0;
+	}
+	else if yvel < 0 {
+		anim_frame = 2;
+	}
+	else
+	{
+		anim_frame = 1;
+	}
+}
+else if (fallingstate)
+{
+	anim = anim_fall;
+}
+else
+{
+	if (_key_left || _key_right)
+	{
+		anim = anim_run;
+	}
+	else
+	{
+		anim = anim_idle;
+	}
+}
+
+if (anim != old_anim)
+{
+	anim_frame = 0;
+	anim_tick = 0;
+	old_anim = anim;
+}
+
+//sprite_index = anim_index;
+if (_anim_speed > 0) image_index = _start_frame + floor(anim_tick / _anim_speed);
+else image_index = _start_frame + anim_frame;
+
+if (image_index > _start_frame + _anim_length - 1)
+{
+	anim_tick = 0;
+	image_index = min(image_index, _start_frame + (_anim_length - 1)); // dont go over
+}
+anim_tick ++;

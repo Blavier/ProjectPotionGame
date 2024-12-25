@@ -4,9 +4,8 @@ hp = fullhp;
 
 // Size and movement variables
 size = 1.0;
-walkvelocity = 6.0;
 jumpvelocity = 1.0;
-base_move_speed = 0.5;
+base_move_speed = 0.25;
 
 // Velocity variables
 xvel = 0;
@@ -33,4 +32,13 @@ active_potion_duration = undefined;
 
 show_debug_message("Player created - initialized all variables");
 show_debug_message("Initial stats - HP: " + string(hp) + "/" + string(fullhp));
-show_debug_message("Initial movement - Walk: " + string(walkvelocity) + ", Jump: " + string(jumpvelocity));
+
+// SPRITE / ANIMATION
+image_speed = 0;
+
+sprite_index = spr_player;
+anim = anim_idle;
+old_anim = anim_idle;
+anim_tick = 0; // every tick of animation
+anim_frame = 0; // useful when the animation has no speed
+anim_current_frame = 0; // frame in the scope of the current anim

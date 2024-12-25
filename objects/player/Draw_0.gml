@@ -1,5 +1,7 @@
 // Draw the player sprite
+y += 1;
 draw_self();
+y -= 1;
 
 // Draw debug stats
 draw_set_font(-1); // Default font
@@ -16,7 +18,6 @@ var current_line = 0;
 draw_text(stats_x, stats_y + (line_height * current_line++), "Player Stats:");
 draw_text(stats_x, stats_y + (line_height * current_line++), "HP: " + string(hp) + "/" + string(fullhp));
 draw_text(stats_x, stats_y + (line_height * current_line++), "Size: " + string(size));
-draw_text(stats_x, stats_y + (line_height * current_line++), "Walk Velocity: " + string(walkvelocity));
 draw_text(stats_x, stats_y + (line_height * current_line++), "Jump Velocity: " + string(jumpvelocity));
 draw_text(stats_x, stats_y + (line_height * current_line++), "Current Velocity: " + string(xvel) + ", " + string(yvel));
 draw_text(stats_x, stats_y + (line_height * current_line++), "Base Move Speed: " + string(base_move_speed));
