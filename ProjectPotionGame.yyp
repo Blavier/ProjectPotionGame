@@ -55,6 +55,7 @@
     {"id":{"name":"game","path":"objects/game/game.yy",},},
     {"id":{"name":"grass_block","path":"objects/grass_block/grass_block.yy",},},
     {"id":{"name":"incantation_box","path":"objects/incantation_box/incantation_box.yy",},},
+    {"id":{"name":"inventory","path":"objects/inventory/inventory.yy",},},
     {"id":{"name":"item","path":"objects/item/item.yy",},},
     {"id":{"name":"obj_ingredient_visual","path":"objects/obj_ingredient_visual/obj_ingredient_visual.yy",},},
     {"id":{"name":"Object10","path":"objects/Object10/Object10.yy",},},

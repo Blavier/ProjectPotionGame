@@ -23,8 +23,7 @@ jump_input_linger = 0;
 
 
 // Initialize held items
-held_mushroom = noone;
-held_potion = noone;
+held_item = noone;
 
 // Initialize potion effect variables
 active_potion_effect = undefined;

@@ -36,6 +36,7 @@
     {"name":"game","order":2,"path":"objects/game/game.yy",},
     {"name":"grass_block","order":6,"path":"objects/grass_block/grass_block.yy",},
     {"name":"incantation_box","order":8,"path":"objects/incantation_box/incantation_box.yy",},
+    {"name":"inventory","order":16,"path":"objects/inventory/inventory.yy",},
     {"name":"item","order":3,"path":"objects/item/item.yy",},
     {"name":"obj_ingredient_visual","order":7,"path":"objects/obj_ingredient_visual/obj_ingredient_visual.yy",},
     {"name":"Object10","order":10,"path":"objects/Object10/Object10.yy",},

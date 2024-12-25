@@ -228,81 +228,68 @@ if (variable_instance_exists(id, "active_potion_effect") &&
 // Pickup/throw logic
 if (_key_pickup) {
     show_debug_message("E pressed - checking for items to pick up");
-    var _held_mushroom = noone;
-    var _held_potion = noone;
+    var _held_item = noone;
     
-    // Check if we're already holding a mushroom
+    // Check if we're already holding an item
     with (item) {
         if (variable_instance_exists(id, "picked_up") && picked_up) {
-            _held_mushroom = id;
+            _held_item = id;
         }
     }
     
-    // Check if we're already holding a potion
-    with (potion) {
-        if (picked_up) {
-            _held_potion = id;
-        }
-    }
+    show_debug_message("Currently held: Item=" + string(_held_item));
     
-    show_debug_message("Currently held: Mushroom=" + string(_held_mushroom) + ", Potion=" + string(_held_potion));
-    
-    if (_held_mushroom != noone) {
-        // Throw the held mushroom
-        with (_held_mushroom) {
-            picked_up = false;
-            // Calculate direction to mouse
-            var _dir = point_direction(x, y, mouse_x, mouse_y);
-            // Convert direction to x and y components
-            xvel = lengthdir_x(throw_speed, _dir) + player.xvel;
-            yvel = lengthdir_y(throw_speed, _dir) + player.yvel;
-
-            audio_play_sound(impact_wood_short, 0, 0);
+    if (_held_item != noone) {
+        // Try to add to inventory first
+        var _added_to_inventory = false;
+        with (inventory) {
+            // Find first empty slot
+            for (var i = 0; i < 3; i++) {
+                if (slots[i] == noone) {
+                    // Store item info and destroy the instance
+                    slots[i] = store_item(_held_item);
+                    instance_destroy(_held_item);
+                    _added_to_inventory = true;
+                    break;
+                }
+            }
         }
-    } else if (_held_potion != noone) {
-        // Drop the held potion
-        with (_held_potion) {
-            picked_up = false;
-            show_debug_message("Dropped potion");
+        
+        // If couldn't add to inventory, throw the item
+        if (!_added_to_inventory) {
+            with (_held_item) {
+                picked_up = false;
+                // Calculate direction to mouse
+                var _dir = point_direction(x, y, mouse_x, mouse_y);
+                // Convert direction to x and y components
+                xvel = lengthdir_x(throw_speed, _dir) + other.xvel;
+                yvel = lengthdir_y(throw_speed, _dir) + other.yvel;
+            }
         }
+        held_item = noone;
     } else {
         // Try to pick up a nearby item
-        var _nearest_mushroom = instance_nearest(x, y, item);
-        var _nearest_potion = instance_nearest(x, y, potion);
+        var _nearest_item = instance_nearest(x, y, item);
         
-        var _mushroom_dist = _nearest_mushroom != noone ? distance_to_object(_nearest_mushroom) : 999999;
-        var _potion_dist = _nearest_potion != noone ? distance_to_object(_nearest_potion) : 999999;
-        
-        show_debug_message("Nearest items - Mushroom: " + string(_mushroom_dist) + ", Potion: " + string(_potion_dist));
-        
-        // Pick up the closest item within range
-        if (_mushroom_dist < 32 && _mushroom_dist <= _potion_dist) {
-            with (_nearest_mushroom) {
-                if (!variable_instance_exists(id, "picked_up")) {
-                    picked_up = false;
-                    xvel = 0;
-                    yvel = 0;
-                }
+        if (_nearest_item != noone && distance_to_object(_nearest_item) < 32) {
+            with (_nearest_item) {
                 picked_up = true;
-                show_debug_message("Picked up mushroom");
-                audio_play_sound(impact_high, 0, 0);
+                xvel = 0;
+                yvel = 0;
             }
-        } else if (_potion_dist < 32) {
-            with (_nearest_potion) {
-                picked_up = true;
-                show_debug_message("Picked up potion");
-            }
+            held_item = _nearest_item;
+            show_debug_message("Picked up item");
         } else {
             show_debug_message("No items within range to pick up");
         }
     }
 }
 
-// Update position of held mushroom
-with (item) {
-    if (variable_instance_exists(id, "picked_up") && picked_up) {
+// Update position of held item
+if (held_item != noone) {
+    with (held_item) {
         x = other.x + (other.image_xscale * 4); // Offset to the side the player is facing
-        y = other.y - 4; // Hold at waist level instead of above head
+        y = other.y - 4; // Hold at waist level
     }
 }
 
