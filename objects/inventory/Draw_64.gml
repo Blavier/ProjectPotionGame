@@ -26,9 +26,8 @@ for (var i = 0; i < 3; i++) {
     draw_set_color(keyboard_check(ord(string(i + 1))) ? c_yellow : c_white);
     draw_rectangle(_slot_x, _start_y, _slot_x + slot_size, _start_y + slot_size, true);
     
-    // Draw item sprite if slot is not empty
-    if (slots[i] != noone) {
-        // Draw the item sprite scaled to fit the slot
+    // Draw item sprite if slot is not empty and has a valid sprite
+    if (!slots[i].is_empty && slots[i].sprite != noone && sprite_exists(slots[i].sprite)) {
         var _sprite = slots[i].sprite;
         var _scale = min(slot_size / sprite_get_width(_sprite), slot_size / sprite_get_height(_sprite));
         

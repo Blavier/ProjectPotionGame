@@ -227,12 +227,17 @@ if (variable_instance_exists(id, "active_potion_effect") &&
 
 // Pickup/throw logic
 if (_key_pickup) {
-    show_debug_message("E pressed - checking for items to pick up");
+    show_debug_message("E pressed - checking for items to pick up or throw");
     var _held_item = noone;
     
-    // Check if we're already holding an item
+    // Check if we're already holding an item or potion
     with (item) {
         if (variable_instance_exists(id, "picked_up") && picked_up) {
+            _held_item = id;
+        }
+    }
+    with (potion) {
+        if (picked_up) {
             _held_item = id;
         }
     }
@@ -240,38 +245,26 @@ if (_key_pickup) {
     show_debug_message("Currently held: Item=" + string(_held_item));
     
     if (_held_item != noone) {
-        // Try to add to inventory first
-        var _added_to_inventory = false;
-        with (inventory) {
-            // Find first empty slot
-            for (var i = 0; i < 3; i++) {
-                if (slots[i] == noone) {
-                    // Store item info and destroy the instance
-                    slots[i] = store_item(_held_item);
-                    instance_destroy(_held_item);
-                    _added_to_inventory = true;
-                    break;
-                }
-            }
-        }
-        
-        // If couldn't add to inventory, throw the item
-        if (!_added_to_inventory) {
-            with (_held_item) {
-                picked_up = false;
-                // Calculate direction to mouse
-                var _dir = point_direction(x, y, mouse_x, mouse_y);
-                // Convert direction to x and y components
-                xvel = lengthdir_x(throw_speed, _dir) + other.xvel;
-                yvel = lengthdir_y(throw_speed, _dir) + other.yvel;
-            }
+        // Throw the item
+        with (_held_item) {
+            picked_up = false;
+            // Calculate direction to mouse
+            var _dir = point_direction(x, y, mouse_x, mouse_y);
+            // Convert direction to x and y components
+            xvel = lengthdir_x(throw_speed, _dir) + other.xvel;
+            yvel = lengthdir_y(throw_speed, _dir) + other.yvel;
         }
         held_item = noone;
     } else {
-        // Try to pick up a nearby item
+        // Try to pick up a nearby item or potion
         var _nearest_item = instance_nearest(x, y, item);
+        var _nearest_potion = instance_nearest(x, y, potion);
         
-        if (_nearest_item != noone && distance_to_object(_nearest_item) < 32) {
+        var _item_dist = _nearest_item != noone ? distance_to_object(_nearest_item) : 999999;
+        var _potion_dist = _nearest_potion != noone ? distance_to_object(_nearest_potion) : 999999;
+        
+        // Pick up the closest one within range
+        if (_item_dist < 32 && _item_dist <= _potion_dist) {
             with (_nearest_item) {
                 picked_up = true;
                 xvel = 0;
@@ -279,8 +272,24 @@ if (_key_pickup) {
             }
             held_item = _nearest_item;
             show_debug_message("Picked up item");
+        } else if (_potion_dist < 32) {
+            with (_nearest_potion) {
+                picked_up = true;
+            }
+            held_item = _nearest_potion;
+            show_debug_message("Picked up potion");
         } else {
             show_debug_message("No items within range to pick up");
+        }
+    }
+}
+
+// Drink potion with F key
+var _key_drink = keyboard_check_pressed(ord("F"));
+if (_key_drink && held_item != noone) {
+    if (object_get_name(held_item.object_index) == "potion") {
+        with (held_item) {
+            event_user(0); // Trigger the drink event
         }
     }
 }

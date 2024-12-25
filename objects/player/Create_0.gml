@@ -25,6 +25,11 @@ jump_input_linger = 0;
 // Initialize held items
 held_item = noone;
 
+// Create inventory if it doesn't exist
+if (!instance_exists(inventory)) {
+    instance_create_layer(0, 0, "Instances", inventory);
+}
+
 // Initialize potion effect variables
 active_potion_effect = undefined;
 active_potion_duration = undefined;
