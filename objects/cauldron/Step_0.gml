@@ -1,25 +1,34 @@
-// Check for collision with mushrooms
-var _colliding_mushroom = instance_place(x, y, mushroom);
-if (_colliding_mushroom != noone) {
-    // Only add the mushroom if it's not being held
-    if (!_colliding_mushroom.picked_up) {
+// Check for collision with items
+var _colliding_item = instance_place(x, y, item);
+if (_colliding_item != noone) {
+    // Only add the item if it's not being held
+    if (!_colliding_item.picked_up) {
         // Add to ingredients if not already present
         if (array_length(ingredients) < 5) { // Limit to 5 ingredients
-            // Store the object name instead of the instance
-            var _ingredient_name = object_get_name(_colliding_mushroom.object_index);
-            array_push(ingredients, _ingredient_name);
-            show_debug_message("Added mushroom to cauldron. Total ingredients: " + string(array_length(ingredients)));
+            // Store the item info
+            var _ingredient_info = {
+                name: _colliding_item.item_name,
+                power: _colliding_item.item_power
+            };
+            array_push(ingredients, _ingredient_info);
+            
+            // Update total power
+            total_power += _colliding_item.item_power;
+            
+            show_debug_message("Added " + _colliding_item.item_name + 
+                " (power: " + string(_colliding_item.item_power) + ") to cauldron. Total power: " + 
+                string(total_power));
             
             // Create a visual indicator
             with (instance_create_layer(x, y, "Instances", obj_ingredient_visual)) {
                 parent_cauldron = other.id;
-                sprite_index = _colliding_mushroom.sprite_index;
+                sprite_index = _colliding_item.sprite_index;
                 image_xscale = 0.5; // Make it smaller
                 image_yscale = 0.5;
                 angle_offset = other.angle + (360 / (array_length(other.ingredients))); // Spread evenly
             }
-            // Destroy the original mushroom
-            instance_destroy(_colliding_mushroom);
+            // Destroy the original item
+            instance_destroy(_colliding_item);
             // play sound
             audio_play_sound(magic__2_, 0, 0);
         } else {

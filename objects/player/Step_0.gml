@@ -224,7 +224,7 @@ if (_key_pickup) {
     var _held_potion = noone;
     
     // Check if we're already holding a mushroom
-    with (mushroom) {
+    with (item) {
         if (variable_instance_exists(id, "picked_up") && picked_up) {
             _held_mushroom = id;
         }
@@ -259,7 +259,7 @@ if (_key_pickup) {
         }
     } else {
         // Try to pick up a nearby item
-        var _nearest_mushroom = instance_nearest(x, y, mushroom);
+        var _nearest_mushroom = instance_nearest(x, y, item);
         var _nearest_potion = instance_nearest(x, y, potion);
         
         var _mushroom_dist = _nearest_mushroom != noone ? distance_to_object(_nearest_mushroom) : 999999;
@@ -292,7 +292,7 @@ if (_key_pickup) {
 }
 
 // Update position of held mushroom
-with (mushroom) {
+with (item) {
     if (variable_instance_exists(id, "picked_up") && picked_up) {
         x = other.x + (other.image_xscale * 16); // Offset to the side the player is facing
         y = other.y + 8; // Hold at waist level instead of above head
