@@ -42,7 +42,7 @@ if !jumpingstate
 			
 			timesincejumped = 0;
 			
-			audio_play_sound(jump, 1, 0, 1+random(0.1), 0, 0.9 + random(0.2));
+			audio_play_sound(step_dirt2, 1, 0, 1+random(0.1), 0, 1.2 + random(0.2));
 								
 			jump_input_linger = 0;
 			coyote_time = 0;
@@ -246,10 +246,10 @@ if (_key_pickup) {
             // Calculate direction to mouse
             var _dir = point_direction(x, y, mouse_x, mouse_y);
             // Convert direction to x and y components
-            xvel = lengthdir_x(throw_speed, _dir);
-            yvel = lengthdir_y(throw_speed, _dir);
-            show_debug_message("Threw mushroom");
-            audio_play_sound(impact, 0, 0);
+            xvel = lengthdir_x(throw_speed, _dir) + player.xvel;
+            yvel = lengthdir_y(throw_speed, _dir) + player.yvel;
+
+            audio_play_sound(impact_wood_short, 0, 0);
         }
     } else if (_held_potion != noone) {
         // Drop the held potion

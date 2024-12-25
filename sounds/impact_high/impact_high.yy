@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.870544,
   "name":"impact_high",
   "parent":{
     "name":"Impact",

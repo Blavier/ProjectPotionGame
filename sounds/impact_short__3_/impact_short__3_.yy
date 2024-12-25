@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.051896,
   "name":"impact_short__3_",
   "parent":{
     "name":"Impact",

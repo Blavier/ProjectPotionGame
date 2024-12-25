@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.208333,
   "name":"negative__2_",
   "parent":{
     "name":"Menu",

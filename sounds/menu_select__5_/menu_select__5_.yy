@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.651792,
   "name":"menu_select__5_",
   "parent":{
     "name":"Menu",

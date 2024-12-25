@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":1.174104,
   "name":"electricity__2_",
   "parent":{
     "name":"Magic",

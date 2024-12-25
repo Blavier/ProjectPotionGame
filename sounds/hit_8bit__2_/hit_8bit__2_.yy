@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.447917,
   "name":"hit_8bit__2_",
   "parent":{
     "name":"Hurt & Death",

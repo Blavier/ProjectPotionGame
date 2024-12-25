@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.098208,
   "name":"land",
   "parent":{
     "name":"Jumping & Landing",

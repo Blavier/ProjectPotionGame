@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.5,
   "name":"misc__2_",
   "parent":{
     "name":"Other",

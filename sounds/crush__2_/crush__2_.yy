@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.578125,
   "name":"crush__2_",
   "parent":{
     "name":"Flame & Crush",

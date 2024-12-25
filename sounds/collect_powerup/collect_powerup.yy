@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.973958,
   "name":"collect_powerup",
   "parent":{
     "name":"Coin",

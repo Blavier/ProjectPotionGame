@@ -9,7 +9,7 @@
   "bitRate":128,
   "compression":0,
   "conversionMode":0,
-  "duration":0.0,
+  "duration":0.616077,
   "name":"swoosh__8_",
   "parent":{
     "name":"Swoosh",
