@@ -9,7 +9,7 @@ var common_names = ["mushroom"];
 
 // Epic items list (pouch of coins)
 var epic_sprites = [spr_pouch_of_coins];
-var epic_names = ["pouch_of_coins"];
+var epic_names = ["kangaroo"];
 
 // Randomly decide if this will be an epic item (pouch) or common item (mushroom)
 var is_epic = true //random(100) < 5;  // 5% chance for epic item
@@ -18,7 +18,7 @@ if (is_epic) {
     // Epic item (pouch of coins)
     sprite_index = epic_sprites[0];
     item_name = epic_names[0];
-    item_power = 1000;  // Epic power level
+    item_power = 5;  // Epic power level
     rarity = "epic";
 } else {
     // Common item (mushroom)

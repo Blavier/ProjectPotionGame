@@ -11,8 +11,13 @@ potion_effect = {
     duration: 0
 };
 
-// Pickup and interaction variables
+// Physics properties (matching item object)
 picked_up = false;
+throw_speed = 6;
+xvel = 0;
+yvel = 0;
+
+// Drinking animation variables
 drinking = false;
 drink_progress = 0;
 drink_speed = 0.02;  // How fast to animate the drinking

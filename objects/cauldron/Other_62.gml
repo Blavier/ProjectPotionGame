@@ -5,6 +5,7 @@ if (async_load[? "id"] == request_id) {
         
         // Parse the JSON response
         var _potion_details = json_parse(_response);
+        show_debug_message("Raw potion details: " + string(_response));
         
         // Create potion object slightly above the cauldron
         var _potion = instance_create_layer(player.x, player.y, "Instances", potion);
@@ -32,7 +33,7 @@ if (async_load[? "id"] == request_id) {
             var _health = 0;
             var _jump = 1.0;
             var _speed = 0;
-            var _duration = 0;
+            var _duration = 300;  // 5 seconds at 60fps
             var _position = [0, 0];
             
             // Apply scaling only if effects exist
@@ -54,10 +55,15 @@ if (async_load[? "id"] == request_id) {
                     _jump = other.scale_effect_multiplier(_base_effects.jump_velocity, other.total_power);
                 
                 if (_base_effects.speed != undefined) 
-                    _speed = _base_effects.speed * other.total_power;
+                    _speed = other.scale_effect_multiplier(_base_effects.speed, other.total_power);
                 
-                if (_base_effects.duration != undefined) 
+                if (_base_effects.duration != undefined && _base_effects.duration > 0) {
                     _duration = _base_effects.duration;
+                    // Scale duration with power (1 power = normal duration, more power = longer duration)
+                    _duration = _duration * (1 + (other.total_power / 10));
+                }
+                // Ensure minimum duration of 5 seconds (300 frames at 60fps)
+                _duration = max(_duration, 300);
                 
                 if (_base_effects.position != undefined) 
                     _position = _base_effects.position;

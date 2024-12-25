@@ -13,6 +13,16 @@ var _key_left_mouse_pressed = mouse_check_button_pressed(mb_left)
 var _key_right_mouse = mouse_check_button(mb_right)
 var _key_right_mouse_pressed = mouse_check_button_pressed(mb_right)
 
+// Calculate jump velocity based on potion effect
+var _current_jump = jumpvelocity;
+if (variable_instance_exists(id, "active_potion_effect") && 
+    active_potion_effect != undefined && 
+    is_struct(active_potion_effect) &&
+    variable_struct_exists(active_potion_effect, "jump_velocity") && 
+    active_potion_effect.jump_velocity != undefined) {
+    _current_jump *= (1 + active_potion_effect.jump_velocity);
+}
+
 var _onground = false
 var _grid_collidable = game.grid_collidable
 
@@ -27,7 +37,7 @@ if (_key_up_pressed) jump_input_linger = 6
 
 if (_key_up && jumpingstate && yvel < 0.5 && timesincejumped < 24)
 {
-	yvel += -0.138 // jump
+	yvel += -0.138 * (_current_jump / jumpvelocity); // scale the jump boost
 }
 
 if (jump_input_linger) jump_input_linger --
@@ -38,7 +48,7 @@ if !jumpingstate
 	{
 		if (coyote_time > 0) // on ground or was recently
 		{
-			yvel = _onground ? -5.3 : -4; // jump
+			yvel = _onground ? -5.3 * (_current_jump / jumpvelocity) : -4 * (_current_jump / jumpvelocity); // scale initial jump velocity
 			
 			timesincejumped = 0;
 			
@@ -122,8 +132,6 @@ if (variable_instance_exists(id, "active_potion_effect") &&
     active_potion_effect.speed != undefined) {
     _current_speed *= (1 + active_potion_effect.speed);
 }
-
-
 
 yvel += game.world_gravity; // gravity
 
