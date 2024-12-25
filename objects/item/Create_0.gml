@@ -5,7 +5,7 @@ yvel = 0;
 
 // Common items list (mushroom only)
 var common_sprites = [spr_mushroom];
-var common_names = ["mushroom"];
+var common_names = ["chicken wing"];
 
 // Epic items list (pouch of coins)
 var epic_sprites = [spr_pouch_of_coins];
@@ -18,12 +18,12 @@ if (is_epic) {
     // Epic item (pouch of coins)
     sprite_index = epic_sprites[0];
     item_name = epic_names[0];
-    item_power = 5;  // Epic power level
+    item_power = 10;  // Epic power level
     rarity = "epic";
 } else {
     // Common item (mushroom)
     sprite_index = common_sprites[0];
     item_name = common_names[0];
-    item_power = 1;  // Common power level
+    item_power = 2;  // Common power level
     rarity = "common";
 }

@@ -20,7 +20,7 @@ if (variable_instance_exists(id, "active_potion_effect") &&
     is_struct(active_potion_effect) &&
     variable_struct_exists(active_potion_effect, "jump_velocity") && 
     active_potion_effect.jump_velocity != undefined) {
-    _current_jump *= (1 + active_potion_effect.jump_velocity);
+    _current_jump *= active_potion_effect.jump_velocity;
 }
 
 var _onground = false
@@ -130,7 +130,7 @@ if (variable_instance_exists(id, "active_potion_effect") &&
     is_struct(active_potion_effect) &&
     variable_struct_exists(active_potion_effect, "speed") && 
     active_potion_effect.speed != undefined) {
-    _current_speed *= (1 + active_potion_effect.speed);
+    _current_speed *= active_potion_effect.speed;
 }
 
 yvel += game.world_gravity; // gravity

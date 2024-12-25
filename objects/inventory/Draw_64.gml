@@ -29,12 +29,17 @@ for (var i = 0; i < 3; i++) {
     // Draw item sprite if slot is not empty and has a valid sprite
     if (!slots[i].is_empty && slots[i].sprite != noone && sprite_exists(slots[i].sprite)) {
         var _sprite = slots[i].sprite;
-        var _scale = min(slot_size / sprite_get_width(_sprite), slot_size / sprite_get_height(_sprite));
+        
+        // Calculate scale to fit within slot while maintaining aspect ratio
+        var _sprite_width = sprite_get_width(_sprite);
+        var _sprite_height = sprite_get_height(_sprite);
+        var _scale = min((slot_size * 0.8) / _sprite_width, (slot_size * 0.8) / _sprite_height);
         
         // Center the sprite in the slot
-        var _sprite_x = _slot_x + (slot_size - sprite_get_width(_sprite) * _scale) / 2;
-        var _sprite_y = _start_y + (slot_size - sprite_get_height(_sprite) * _scale) / 2;
+        var _sprite_x = _slot_x + (slot_size - (_sprite_width * _scale)) / 2;
+        var _sprite_y = _start_y + (slot_size - (_sprite_height * _scale)) / 2;
         
+        // Draw the sprite
         draw_sprite_ext(_sprite, 0, _sprite_x, _sprite_y, _scale, _scale, 0, c_white, 1);
     }
 }
