@@ -1,9 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"Object12",
+  "%Name":"tree",
   "eventList":[],
   "managed":true,
-  "name":"Object12",
+  "name":"tree",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
@@ -27,7 +27,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":null,
+  "spriteId":{
+    "name":"spr_tree",
+    "path":"sprites/spr_tree/spr_tree.yy",
+  },
   "spriteMaskId":null,
   "visible":true,
 }

@@ -2,7 +2,7 @@
   "$GMSprite":"",
   "%Name":"spr_tiles_alchemist",
   "bboxMode":0,
-  "bbox_bottom":127,
+  "bbox_bottom":143,
   "bbox_left":0,
   "bbox_right":255,
   "bbox_top":0,
@@ -12,14 +12,14 @@
   "edgeFiltering":false,
   "For3D":false,
   "frames":[
-    {"$GMSpriteFrame":"","%Name":"c7e52565-bf55-45f0-9ad3-ed87b48bf639","name":"c7e52565-bf55-45f0-9ad3-ed87b48bf639","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"398fec0c-8934-44b2-a588-79cf1e86ae35","name":"398fec0c-8934-44b2-a588-79cf1e86ae35","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":0,
   "gridY":0,
   "height":512,
   "HTile":false,
   "layers":[
-    {"$GMImageLayer":"","%Name":"19b8fe9e-9e04-4c2b-9d61-c8c0b134e8fc","blendMode":0,"displayName":"default","isLocked":false,"name":"19b8fe9e-9e04-4c2b-9d61-c8c0b134e8fc","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
+    {"$GMImageLayer":"","%Name":"5b19f1e3-cb8e-42cb-a4fd-edc96a6b0108","blendMode":0,"displayName":"default","isLocked":false,"name":"5b19f1e3-cb8e-42cb-a4fd-edc96a6b0108","opacity":100.0,"resourceType":"GMImageLayer","resourceVersion":"2.0","visible":true,},
   ],
   "name":"spr_tiles_alchemist",
   "nineSlice":null,
@@ -69,8 +69,8 @@
     "tracks":[
       {"$GMSpriteFramesTrack":"","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"$KeyframeStore<SpriteFrameKeyframe>":"","Keyframes":[
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"c7e52565-bf55-45f0-9ad3-ed87b48bf639","path":"sprites/spr_tiles_alchemist/spr_tiles_alchemist.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"79667301-290f-49ce-872b-cbcd552ceb23","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"398fec0c-8934-44b2-a588-79cf1e86ae35","path":"sprites/spr_tiles_alchemist/spr_tiles_alchemist.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"ca51dfbb-ed0c-474a-b5ca-693862d3626c","IsCreationKey":false,"Key":0.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,
